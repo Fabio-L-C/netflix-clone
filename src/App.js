@@ -28,25 +28,24 @@ function App() {
     loadAll();
   }, []);
 
-  useEffect (() => {
+  useEffect(() => {
     const scrollListener = () => {
       if (window.scrollY > 10) {
         setBlackHeader(true);
       } else {
         setBlackHeader(false);
       }
-    }
-    
+    };
+
     window.addEventListener("scroll", scrollListener);
     return () => {
       window.removeEventListener("scroll", scrollListener);
-    }
+    };
   }, []);
 
   return (
     <div className="page">
-
-      <Header black={blackHeader}/>
+      <Header black={blackHeader} />
 
       {featuredData && <FeaturedMovie item={featuredData} />}
 
@@ -57,6 +56,21 @@ function App() {
           </div>
         ))}
       </section>
+
+      <footer>
+        Feito com Amor <br />
+        Direitos de imagem para Netflix <br />
+        Dados pegos do site Themoviedb.org
+      </footer>
+
+      {movieList.length <= 0 && (
+        <div className="loading">
+          <img
+            src="https://c.tenor.com/Rfyx9OkRI38AAAAM/netflix-netflix-startup.gif"
+            alt="Carregando"
+          />
+        </div>
+      )}
     </div>
   );
 }
